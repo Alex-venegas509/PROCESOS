@@ -1,0 +1,236 @@
+.header {
+  width: 100%;
+  margin: 0;
+  background-color: #dddcdc;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* centrado vertical */
+  box-sizing: border-box;
+  font-family: system-ui;
+  flex-wrap: wrap; /*  permite que los elementos bajen si no caben */
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  flex: 1;
+}
+
+.left img {
+  height: 60px;
+  width: auto;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* 🔥 Media queries */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;   /* Los elementos se apilan */
+    align-items: center;      /* Centra todo */
+    text-align: center;
+  }
+
+  .left {
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .right {
+    margin-top: 15px;
+    justify-content: center;
+  }
+
+  .left img {
+    height: 50px; /* Imagen más pequeña en móviles */
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 10px;
+  }
+
+  .left img {
+    height: 40px; /* Más pequeño aún en pantallas muy chicas */
+  }
+
+  .right {
+    flex-direction: column; /* Opcional: botones en columna */
+    gap: 10px;
+  }
+}
+
+.passwordWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordInput {
+  width: 100%;
+  padding-right: 35px; /* espacio para el ícono */
+  transition: all 0.3s ease; /* transición suave */
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 10px;
+  margin-top: 0px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #888;    
+}
+
+.formRecuperacionContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    margin-top: 20px;
+}
+
+.formRecuperacion {
+    background-color: #f9f9f9;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.formRecuperacion h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.formRecuperacion label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #444;
+}
+
+.formRecuperacion input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.formRecuperacion button {
+    width: 50%;
+    padding: 10px;
+    background-color: #39a900;
+    border: none;   
+    color: white;
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 0 auto;
+}
+
+.formRecuperacion button:hover {
+    background-color: #007832;
+}
+
+.formRecuperacion input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.formInline {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* espacio entre elementos */
+}
+
+.formInline input,
+.formInline .passwordWrapper,
+.formInline button {
+  flex-shrink: 0;
+}
+
+.input[type="email"],
+.passwordWrapper input {
+  height: 35px;
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid #39a900;
+
+}
+
+.passwordWrapper {
+  position: relative;
+  gap: 10px;
+}
+
+.passwordWrapper input {
+  padding-right: 35px; /* espacio para el ícono */
+  box-sizing: border-box;
+}
+
+.buttonIngreso {
+    padding: 8px;
+    background-color: #007832;
+    border: none;
+    color: white;
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.buttonIngreso:hover {
+    background-color: #39a900;
+}
+
+.alerta {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%, 0) scale(0.9);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  font-size: 16px;
+  color: #ffffff;
+  padding: 15px 10px;
+  border-radius: 6px;
+}
+
+.visible {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+}
+
+.success {
+  background-color: #00304D;
+}
+
+.error {
+  background-color: #F44336;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+

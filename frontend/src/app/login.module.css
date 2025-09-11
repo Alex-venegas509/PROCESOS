@@ -1,0 +1,183 @@
+.pageContainer {
+    display: flex;
+    justify-content: center;
+    /* Centrar horizontalmente */
+    align-items: center;
+    /* Centrar verticalmente */
+    height: 100vh;
+    /* Que ocupe toda la altura de la pantalla */
+    background-color: #f5f5f5;
+    /* Color de fondo opcional */
+}
+
+.loginContainer {
+    width: 320px;
+    /* Ancho ligeramente aumentado para que coincida con la imagen */
+    padding: 30px;
+    /* Más padding interno para que coincida con la imagen */
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+    box-sizing: border-box;
+    /* Asegura que el padding no aumente el ancho total */
+    text-align: center;
+    /* Centrar contenido dentro del contenedor */
+}
+
+.imagesContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Alinear verticalmente los elementos dentro */
+    margin-bottom: 0px;
+    /* Espacio debajo del logo */
+}
+
+.loginContainer img {
+    width: 100px;
+    /* Tamaño del logo para que coincida con la imagen */
+    height: auto;
+    margin: 20px;
+    margin-top: -10px;
+}
+
+.titulo {
+    display: block;
+    /* Hace que el label ocupe toda la línea */
+    font-family: 'Calibri Bold', sans-serif;
+    font-size: 16px;
+    color: black;
+    margin-bottom: 5px;
+    margin-top: 0px;
+    text-align: left;
+    /* Alineación a la izquierda */
+}
+
+.loginContainer input {
+    display: block;
+    width: 100%;
+    /* Ocupar todo el ancho disponible */
+    padding: 12px;
+    /* Más padding vertical */
+    margin-bottom: 20px;
+    /* Más espacio entre campos */
+    border-radius: 8px;
+    /* Bordes más redondeados */
+    border: 1px solid #39A900;
+    /* Borde verde */
+    box-sizing: border-box;
+    /* Asegura que el padding no aumente el ancho total */
+    font-size: 16px;
+    /* Tamaño de fuente para el input */
+}
+
+.loginContainer input:focus {
+    outline: none;
+    /* Eliminar el contorno de enfoque predeterminado */
+    border-color: #007832;
+    /* Borde más oscuro al enfocar */
+}
+
+.loginContainer button {
+    background-color: #007832;
+    /* Verde oscuro del botón */
+    color: white;
+    width: 100%;
+    /* Ocupar todo el ancho */
+    padding: 15px 20px;
+    /* Más padding vertical para el botón */
+    font-size: 16px;
+    font-weight: 600;
+    /* Más grueso */
+    border: none;
+    border-radius: 8px;
+    /* Bordes redondeados para el botón */
+    cursor: pointer;
+}
+
+.loginContainer button:hover {
+    background-color: #39a900;
+    /* Verde ligeramente más oscuro al pasar el ratón */
+}
+
+.passwordWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.passwordInput {
+    width: 100%;
+    padding-right: 35px;
+    /* espacio para el ícono */
+    transition: all 0.3s ease;
+    /* transición suave */
+}
+
+.eyeIcon {
+    position: absolute;
+    right: 10px;
+    margin-top: -20px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #888;
+}
+
+.enlacesAcciones {
+    display: flex;
+    justify-content: center;
+    /* Centra horizontalmente */
+    gap: 20px;
+    /* Espacio entre enlaces */
+    margin-top: 15px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+.enlacesAcciones a {
+    text-decoration: none;
+    color: #00304D;
+}
+
+.enlacesAcciones a:hover {
+    text-decoration: underline;
+}
+
+.alerta {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, 0) scale(0.9);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    font-size: 16px;
+    color: #ffffff;
+    padding: 15px 10px;
+    border-radius: 6px;
+}
+
+.alerta.visible {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+}
+
+.success {
+    background-color: #00304D;
+}
+
+.error {
+    background-color: #F44336;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,95 @@
+.container {
+  padding: 24px;
+}
+
+/* Títulos */
+.title {
+  font-size: 1.25rem; /* text-xl */
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+/* Buscadores */
+.searchContainer {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.searchInput {
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 6px;
+  width: 12%;
+}
+
+/* Tabla */
+.table {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.table thead {
+  background-color: #f0f0f0;
+}
+
+/* Acciones */
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.editBtn {
+  background-color: #3b82f6; /* azul */
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.editBtn:hover {
+  background-color: #2563eb;
+}
+
+.deleteBtn {
+  background-color: #ef4444; /* rojo */
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.deleteBtn:hover {
+  background-color: #dc2626;
+}
+
+.foto {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.docLink {
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.docLink:hover {
+  color: #0056b3;
+}
+

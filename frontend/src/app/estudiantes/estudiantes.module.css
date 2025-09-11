@@ -1,0 +1,621 @@
+.header {
+  width: 100%;
+  background-color: #dddcdc;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative; /* 👈 importante para que .tabs se posicione dentro */
+  min-height: 100px;  /* espacio suficiente para las pestañas */
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 30px;
+}
+
+.logo {
+  height: 70px; /* ajusta el tamaño a lo que quieras */
+  object-fit: contain;
+}
+
+.titulosContainer {
+  display: flex;
+  flex-direction: column; /* Los pone uno debajo del otro */
+  align-items: flex-start; /* A la izquierda */
+}
+
+.titulosContainer2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* lo centra exactamente */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.titulo {
+  font-family: 'Calibri bold', sans-serif;
+  font-size: 16px;
+  color: #000000;
+  margin: 2px 5px;
+}
+
+.titulo2 {
+  font-family: 'Calibri bold', sans-serif;
+  font-size: 14px;
+  color: #000000;
+  margin: 2px 5px;
+}
+
+.titulo3 {
+  font-family: 'Calibri bold', sans-serif;
+  font-size: 26px;
+  color: #000000;
+  margin: 2px 5px;
+}
+
+.titulo4 {
+  font-family: 'Calibri bold', sans-serif;
+  font-size: 22px;
+  color: #000000;
+  margin: 2px 5px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; /* alinea arriba */
+  gap: 40px; /* espacio entre la foto y el formulario */
+}
+
+.fotoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+.fotoBox {
+  width: 200px;
+  height: 200px;
+  border: 2px solid #00304D;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.fotoText {
+  font-weight: bold;
+  font-size: 16px;
+  color: #000;
+}
+
+.fotoPreview {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.inputFile {
+  display: none;
+}
+
+.customButton {
+  background-color: #00304D;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  margin-left: 50px;
+}
+
+.customButton:hover {
+  background: #001B36;
+}
+
+.inputsPrimary {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.nameInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inlineLabels {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  gap: 4px;
+}
+
+.subtitulo {
+  font-family: 'Calibri bold', sans-serif;
+  font-size: 18px;
+  color: #000000;
+  margin: 2px 5px;
+}
+
+.nameInputs input {
+  border: 1px solid #dddcdc;
+  border-radius: 8px;
+  padding: 8px 12px; /* espacio natural, texto pegado a la izquierda */
+  box-sizing: border-box;
+  width: 400px;
+}
+
+.nameInputs input[type=number]::-webkit-inner-spin-button,
+.nameInputs input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.inputSecundary {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 55px;
+}
+
+.nameInputs select {
+    background-color: #39a900;
+    border-radius: 6px;
+    padding: 8px 12px;
+    border: none;
+    color: white;
+    font-size: 14px;
+}
+
+.nameInputs select:hover {
+    background-color: #007832;
+}
+
+.nameInputs option {
+  background-color: white;
+  color: black;
+}
+
+.fileUploadContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.previewBox {
+  margin-top: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+.previewImage {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 6px;
+}
+
+.contenedorBoton {
+  display: flex;
+  justify-content: center;
+  margin: 0px 0;
+  min-height: 20px;
+  align-items: center;
+}
+
+.boton {
+  background-color: #007832;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.boton:hover {
+  background-color: #39a900;
+}
+
+.texto {
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+.documentosContainer {
+  margin-top: -30px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.docsPrimary {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.docItem {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column; /* ahora los hijos se apilan verticalmente */
+  align-items: flex-start; /* alineados a la izquierda */
+  gap: 8px; /* espacio entre preview y botón */
+}
+
+.docPreview {
+  max-width: 200px;
+  max-height: 200px;
+  cursor: pointer;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.docPreviewPdf {
+  width: 200px;
+  height: 260px;
+  border: 0;
+  pointer-events: none; /* importante */
+}
+
+.docTexto {
+  cursor: pointer;
+  font-weight: 500;
+  color: #333;
+}
+
+.downloadBtn {
+  background: #00304D;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.downloadBtn:hover {
+  background: #001B36;
+}
+
+.previewBox {
+  position: relative;
+  display: inline-block;
+}
+
+.previewBtn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 6px;
+  cursor: pointer;
+  display: none; /* Oculto por defecto */
+}
+
+.previewBox:hover .previewBtn {
+  display: block; /* Se muestra solo al hover */
+}
+
+.docActions {
+  position: absolute;
+  top: 8px; /* un poco abajo del borde superior */
+  left: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.previewBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: -10px;
+  border-radius: 50%;
+  padding: 4px 6px;
+  transition: transform 0.2s;
+}
+
+.deleteBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 50%;
+  padding: 4px 6px;
+  transition: transform 0.2s;
+}
+
+.previewBtn:hover {
+  transform: scale(1.2);
+  color: #1d72b8;
+}
+
+.deleteBtn:hover {
+  transform: scale(1.2);
+  color: red;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modalContent { 
+  max-width: 90%; 
+  max-height: 90%; 
+  overflow: auto; 
+  background: #fff; 
+  padding: 20px; 
+  border-radius: 12px; 
+  position: relative; 
+}
+
+.modalPdf { 
+  width: 85vw; 
+  height: 85vh; 
+  border: 0; 
+}
+
+.closeBtn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 30px;   /* ancho fijo */
+  height: 30px;  /* alto fijo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  color: #000000;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.closeBtn:hover {
+  color: red;
+  transform: scale(1.1); /* ahora no "tiembla" porque el tamaño del contenedor es fijo */
+}
+
+.textGreen {
+  font-family: 'Calibri bold', sans-serif;
+  font-size: 20px;
+  color: #000000;
+  margin: 2px 5px;
+  margin-top: 30px;
+}
+
+.documentosList { 
+  list-style: none; 
+  padding: 0; 
+  margin: 0; 
+}
+
+/* Cada item puede tener header + submenu debajo */
+.documentoItem { 
+  padding: 8px 0; 
+  border-bottom: 1px solid #e6e6e6; 
+}
+
+/* Fila (texto izquierda, icono derecha) */
+.documentoHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nombre { 
+  flex: 1; 
+  margin-right: 10px; 
+}
+
+/* Submenú */
+.submenu { 
+  list-style: none; 
+  padding: 8px 0 0; 
+  margin: 0 0 0 0; 
+}
+
+.submenuItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+}
+
+/* Iconos */
+.icono {
+  width: 22px; 
+  height: 22px; 
+  display: inline-block;
+  border-radius: 6px; 
+  cursor: pointer; 
+  flex-shrink: 0;
+}
+
+/* Check */
+.check { 
+  border: 2px solid #39a900; 
+  background: #fff; 
+  position: relative; 
+}
+
+.check.activo { 
+  border-color: #4caf50; 
+  background: #007832; 
+}
+
+.check.activo::after {
+  content: "✔"; 
+  color: #fff; 
+  font-size: 14px; 
+  font-weight: 700;
+  position: absolute; 
+  top: -2px; 
+  left: 3px;
+}
+
+.menu {
+  background: #fff;
+  border: 2px solid #39a900;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+/* Líneas del menú */
+.menu::before, .menu::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  height: 2px;
+  background: #39a900;
+  transition: background 0.3s ease;
+}
+.menu::before { top: 6px; }
+.menu::after { bottom: 6px; }
+
+/* Cuando el menú está activo */
+.menu.activo {
+  transform: rotate(90deg);
+  box-shadow: 0 0 0 2px rgba(57,169,0,.15) inset;
+}
+
+.contenedorButton {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0px 0;
+  margin-top: 120px;
+  min-height: 20px;
+  align-items: center;
+}
+
+.button {
+  background-color: #007832;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.button:hover {
+  background-color: #39a900;
+}
+
+.alerta {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%, 0) scale(0.9);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  font-size: 16px;
+  color: #ffffff;
+  padding: 15px 10px;
+  border-radius: 6px;
+}
+
+.alerta.visible {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+}
+
+.success {
+  background-color: #00304D;
+}
+
+.error {
+  background-color: #F44336;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tabs {
+  position: absolute;
+  bottom: 0;
+  right: 42px;
+  display: flex;
+  padding: 0 14px;
+  border-radius: 10px 10px 0 0;
+  border-bottom: 2px solid #ccc;
+  gap: 6px;
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 16px;        /* más compacto */
+  border-radius: 8px 8px 0 0;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid #ccc;
+  border-bottom: none;      /* para que no se vea línea extra */
+  background-color: white;
+  color: #333;
+}
+
+/* Hover */
+.tab:hover {
+  background-color: #e6e6e6;
+}
+
+/* Activa */
+.activeTab {
+  background-color: #00304D;
+  color: white;
+  font-weight: bold;
+  border: 1px solid #28a745;
+  border-bottom: none; /* se une con el contenedor */
+  box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+
+
+
+
+
+
+
+

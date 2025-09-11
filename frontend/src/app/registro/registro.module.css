@@ -1,0 +1,156 @@
+.pageContainer {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center;    /* Centrar verticalmente */
+  height: 100vh;          /* Que ocupe toda la altura de la pantalla */
+  background-color: #f5f5f5; /* Color de fondo opcional */
+}
+
+.titulo {
+    display: flex;
+    justify-content: center; /* Horizontal */
+    align-items: center;
+    color: #000000;
+    font-family: 'Calibri bold', sans-serif;
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.imagesContainer {
+  display: flex;
+  justify-content: center; /* Horizontal */
+  align-items: center;     /* Vertical */
+}
+
+.imagesContainer img {
+  max-width: 40%;
+  height: auto;
+}
+
+.passwordWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.passwordInput {
+    width: 100%;
+    padding-right: 35px; /* espacio para el ícono */
+    transition: all 0.3s ease; /* transición suave */
+}
+
+.eyeIcon {
+    position: absolute;
+    right: 10px;
+    margin-top: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #888;    
+}
+
+.container {
+    width: 300px;
+    padding: 16px;
+    background-color: #ffffff;
+    margin-top: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 0px #00000020;
+}
+
+.container input {
+    display: block;
+    width: 90%;
+    color: #000000; /* Color del texto ingresado */
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #39A900;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.container input::placeholder {
+    color: #000000; /* Color del placeholder */
+    font-family: 'Calibri Regular', sans-serif;
+    font-size: 16px;
+}
+
+.container select {
+    display: block;
+    width: 97%;
+    color: #000000; /* Color del texto ingresado */
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #39A900;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.btnRegistrar {
+    width: 100%;
+    padding: 10px;
+    background-color: #39A900 !important;  
+    color: #ffffff;
+    border: none;
+    font-size: 12px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    font-family: 'Calibri Regular', sans-serif;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.btnRegistrar:hover {
+    background-color: #007832 !important;  
+}
+
+.btnVolver {
+    width: 100%;
+    padding: 10px;
+    background-color: #007832 !important;  
+    color: #ffffff;
+    border: none;
+    font-size: 12px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    font-family: 'Calibri Regular', sans-serif;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.btnVolver:hover {
+    background-color: #39A900 !important; 
+}
+
+.alerta {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%, 0) scale(0.9);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  font-size: 16px;
+  color: #ffffff;
+  padding: 15px 10px;
+  border-radius: 6px;
+}
+
+.alerta.visible {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+}
+
+.success {
+  background-color: #00304D;
+}
+
+.error {
+  background-color: #F44336;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
