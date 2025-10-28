@@ -1,8 +1,11 @@
-from fastapi import FastAPI, Form
+from fastapi import FastAPI, Form, Request, Response
 from database.db import Base, engine
 from fastapi.middleware.cors import CORSMiddleware
-from app.controllers import login_routes, protected_routes, usuarios_routes, tipo_usuarios_routes, password_resets_routes, estudiantes_routes, novedades_routes, certificacion_routes, instructores_routes, productiva_routes, seguimiento_routes
-from app.controllers.protected_routes import router as protected_router
+from app.controllers import (
+    login_routes, protected_routes, usuarios_routes, tipo_usuarios_routes,
+    password_resets_routes, estudiantes_routes, novedades_routes,
+    certificacion_routes, instructores_routes, productiva_routes, seguimiento_routes
+)
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -23,6 +26,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Incluyendo routers
 app.include_router(login_routes.router, prefix="/api/login", tags=["Login"])
 app.include_router(protected_routes.router, prefix="/api/proteccion", tags=["Protegido"])
 app.include_router(usuarios_routes.router, prefix="/api/usuarios", tags=["usuarios"])
@@ -34,7 +38,19 @@ app.include_router(certificacion_routes.router, prefix="/api/certificacion", tag
 app.include_router(instructores_routes.router, prefix="/api/instructores", tags=["instructores"])
 app.include_router(productiva_routes.router, prefix="/api/productiva", tags=["productiva"])
 app.include_router(seguimiento_routes.router, prefix="/api/seguimiento", tags=["seguimiento"])
+
+# Montar carpeta de archivos subidos
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
+
+# Middleware para evitar cache en uploads
+@app.middleware("http")
+async def no_cache_uploads(request: Request, call_next):
+    response: Response = await call_next(request)
+    if request.url.path.startswith("/uploads/"):
+        response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+        response.headers["Pragma"] = "no-cache"
+        response.headers["Expires"] = "0"
+    return response
 
 @app.get("/")
 def read_root():
@@ -43,5 +59,3 @@ def read_root():
 @app.get("/favicon.ico", include_in_schema=False)
 async def favicon():
     return FileResponse("app/static/favicon.ico")
-
-

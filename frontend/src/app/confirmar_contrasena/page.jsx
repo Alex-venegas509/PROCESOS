@@ -1,11 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import styles from "./confirmacion.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useSearchParams, useRouter } from "next/navigation";
 
-export default function ResetPasswordPage() {
+function ResetPasswordPageContent() {
   const searchParams = useSearchParams();
   const token = searchParams.get("token"); // <- se obtiene de la URL
   const router = useRouter();
@@ -162,5 +162,13 @@ export default function ResetPasswordPage() {
           {mensaje}
         </div>
     </>
+  );
+}
+
+export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={<p>Cargando...</p>}>
+      <ResetPasswordPageContent />
+    </Suspense>
   );
 }

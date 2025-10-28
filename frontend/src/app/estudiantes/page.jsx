@@ -1,9 +1,13 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import styles from "./estudiantes.module.css";
 import RegistroEstudiantes from "../registro_estudiantes/page";
+import EtapaProductiva from "../productiva/page";
+import RegistrosProductiva from "../registro_etapaProductiva/page";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Registros() {
   const [mensaje, setMensaje] = useState("");
@@ -15,9 +19,10 @@ export default function Registros() {
   const [direction, setDirection] = useState(0);
   const [files, setFiles] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
+  const router = useRouter();
   const [documentos, setDocumentos] = useState([
     { id: 1, nombre: "Documento identidad", tipo: "check", activo: false },
-    { id: 2, nombre: "Acta Compromiso Aprendiz", tipo: "check", activo: true },
+    { id: 2, nombre: "Acta Compromiso Aprendiz", tipo: "check", activo: false },
     {
       id: 3,
       nombre: "Soporte Académico",
@@ -42,8 +47,10 @@ export default function Registros() {
       ],
     },
   ]);
+
   const [form, setForm] = useState({
     nombre: "",
+    apellidos: "",
     tipo_identificacion: "",
     identificacion: "",
     correo: "",
@@ -52,8 +59,9 @@ export default function Registros() {
     telefono: "",
     direccion: "",
     ficha: "",
-    tipo_documento: [],
+    tipo_documento: documentos.filter((doc) => doc.activo).map((doc) => doc.nombre),
   });
+
   const mostrarAlerta = (texto, tipo = "error") => {
     setMensaje(texto);
     setTipoMensaje(tipo);
@@ -66,6 +74,18 @@ export default function Registros() {
         setTipoMensaje("");
       }, 400); // Tiempo para animación de fade out
     }, 2500);
+  };
+
+  useEffect(() => {
+    setForm((prevForm) => ({
+      ...prevForm,
+      tipo_documento: documentos.filter((doc) => doc.activo).map((doc) => doc.nombre),
+    }));
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    router.push("/"); // redirige a page.jsx
   };
 
   const handleFileChange = (e) => {
@@ -129,6 +149,14 @@ export default function Registros() {
     {
       titulo3: "REGISTROS DE ESTUDIANTES",
       titulo4: "Información de Registros",
+    },
+    {
+      titulo3: "ETAPA PRODUCTIVA",
+      titulo4: "Información de Etapa Productiva",
+    },
+    {
+      titulo3: "REGISTROS DE ETAPA PRODUCTIVA",
+      titulo4: "Información de Etapa Productiva"
     },
   ];
 
@@ -294,6 +322,17 @@ export default function Registros() {
           </div>
         </div>
 
+        <div className={styles.right}>
+          <Image
+            src="/icons/cerrar-sesion.png"
+            alt="Cerrar sesión"
+            width={24}
+            height={24}
+            title="Cerrar sesión"
+            onClick={handleLogout}
+          />
+        </div>
+
         <div className={styles.titulosContainer2}>
           <AnimatePresence mode="wait">
             <motion.div
@@ -332,6 +371,22 @@ export default function Registros() {
             onClick={() => handleTabChange(1)}
           >
             Registros <br /> Estudiantes
+          </button>
+
+          <button
+            type="button"
+            className={`${styles.tab} ${activeTab === 2 ? styles.activeTab : ""}`}
+            onClick={() => handleTabChange(2)}
+          >
+            Etapa <br /> Productiva
+          </button>
+
+          <button
+            type="button"
+            className={`${styles.tab} ${activeTab === 3 ? styles.activeTab : ""}`}
+            onClick={() => handleTabChange(3)}
+          >
+            Registros <br /> Etapa <br /> Productiva
           </button>
         </div>
       </div>
@@ -380,11 +435,11 @@ export default function Registros() {
                   {/* DATOS PRINCIPALES */}
                   <div className={styles.inputsPrimary}>
                     <div className={styles.nameInputs}>
-                      <label className={styles.subtitulo}>Nombre Completo</label>
-                      <input type="text" name="nombre" value={form.nombre} onChange={handleChange} required/>
+                      <label className={styles.subtitulo}>Nombres</label>
+                      <input type="text" name="nombre" value={form.nombre} onChange={handleChange} required />
 
                       <label className={styles.subtitulo}>Correo Personal</label>
-                      <input type="email" name="correo" value={form.correo} onChange={handleChange} required/>
+                      <input type="email" name="correo" value={form.correo} onChange={handleChange} required />
 
                       <div className={styles.inlineLabels}>
                         <label className={styles.subtitulo}>Correo Institucional</label>
@@ -393,7 +448,7 @@ export default function Registros() {
                       <input type="email" name="correo_institucional" value={form.correo_institucional} onChange={handleChange} />
 
                       <label className={styles.subtitulo}>Número Celular</label>
-                      <input type="text" name="celular" value={form.celular} onChange={handleChange} required/>
+                      <input type="text" name="celular" value={form.celular} onChange={handleChange} required />
 
                       {/* Lista de documentos */}
                       <label className={styles.textGreen}>Tipo de documento</label>
@@ -406,11 +461,13 @@ export default function Registros() {
                                 <span
                                   className={`${styles.icono} ${styles.check} ${doc.activo ? styles.activo : ""}`}
                                   onClick={() => toggleCheck(doc.id)}
+                                  title="Marcar"
                                 />
                               ) : (
                                 <span
                                   className={`${styles.icono} ${styles.menu} ${doc.abierto ? styles.activo : ""}`}
                                   onClick={() => toggleMenu(doc.id)}
+                                  title="Desplegar"
                                 />
                               )}
                             </div>
@@ -437,6 +494,9 @@ export default function Registros() {
                   {/* DATOS SECUNDARIOS */}
                   <div className={styles.inputSecundary}>
                     <div className={styles.nameInputs}>
+                      <label className={styles.subtitulo}>Apellidos</label>
+                      <input type="text" name="apellidos" value={form.apellidos} onChange={handleChange} required />
+
                       <select name="tipo_identificacion" value={form.tipo_identificacion} onChange={handleChange} required>
                         <option value="">Seleccione tipo de documento</option>
                         <option value="CC">Cédula de Ciudadanía</option>
@@ -446,16 +506,16 @@ export default function Registros() {
                       </select>
 
                       <label className={styles.subtitulo}>No. de identificación</label>
-                      <input type="text" name="identificacion" value={form.identificacion} onChange={handleChange} required/>
+                      <input type="text" name="identificacion" value={form.identificacion} onChange={handleChange} required />
 
                       <label className={styles.subtitulo}>Dirección</label>
-                      <input type="text" name="direccion" value={form.direccion} onChange={handleChange} required/>
+                      <input type="text" name="direccion" value={form.direccion} onChange={handleChange} required />
 
                       <label className={styles.subtitulo}>Número Telefónico</label>
                       <input type="text" name="telefono" value={form.telefono} onChange={handleChange} />
 
                       <label className={styles.subtitulo}>Ficha Matrícula</label>
-                      <input type="number" name="ficha" value={form.ficha} onChange={handleChange} required/>
+                      <input type="number" name="ficha" value={form.ficha} onChange={handleChange} required />
 
                       <div className={styles.contenedorButton}>
                         <button type="submit" className={styles.button}>
@@ -483,7 +543,7 @@ export default function Registros() {
 
                     <div className={styles.documentosContainer}>
                       {files.length > 0 ? (
-                        <ul className={styles.docsList}>
+                        <ul>
                           {files.map((file, index) => (
                             <li key={index} className={styles.docItem}>
                               <div className={styles.previewBox}>
@@ -504,8 +564,8 @@ export default function Registros() {
                                 )}
 
                                 <div className={styles.docActions}>
-                                  <button type="button" className={styles.previewBtn} onClick={() => handlePreview(file)}>🔍</button>
-                                  <button type="button" className={styles.deleteBtn} onClick={() => handleDelete(index)}>❌</button>
+                                  <button type="button" title="Ver Documento" className={styles.previewBtn} onClick={() => handlePreview(file)}>🔍</button>
+                                  <button type="button" title="Eliminar" className={styles.deleteBtn} onClick={() => handleDelete(index)}>❌</button>
                                 </div>
                               </div>
 
@@ -540,6 +600,34 @@ export default function Registros() {
               <RegistroEstudiantes />
             </motion.div>
           )}
+
+          {activeTab === 2 && (
+            <motion.div
+              key="EtapaProductiva"
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.6 }}
+            >
+              <EtapaProductiva />
+            </motion.div>
+          )}
+
+          {activeTab === 3 && (
+            <motion.div
+              key="RegistrosProductiva"
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.6 }}
+            >
+              <RegistrosProductiva />
+            </motion.div>
+          )}
         </AnimatePresence>
       </div>
 
@@ -548,13 +636,13 @@ export default function Registros() {
         <div className={styles.modalOverlay} onClick={closeModal}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             {selectedFile.type.startsWith("image/") ? (
-              <img src={URL.createObjectURL(selectedFile)} alt="Vista ampliada" className={styles.modalImage} />
+              <img src={URL.createObjectURL(selectedFile)} alt="Vista ampliada" />
             ) : selectedFile.type === "application/pdf" ? (
               <embed src={URL.createObjectURL(selectedFile)} type="application/pdf" className={styles.modalPdf} />
             ) : (
               <p>{selectedFile.name}</p>
             )}
-            <button onClick={closeModal} className={styles.closeBtn}>❌</button>
+            <button onClick={closeModal} className={styles.closeBtn} title="Cerrar">❌</button>
           </div>
         </div>
       )}

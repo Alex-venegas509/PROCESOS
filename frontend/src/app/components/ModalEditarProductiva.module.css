@@ -1,0 +1,519 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* que quede encima */
+}
+
+.modalForm {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  width: 95%;
+  max-width: 1200px; /* tamaño máximo */
+  max-height: 90vh;
+  overflow-y: auto; /* scroll si se pasa */
+  position: relative;
+}
+
+.closeButton {
+  position: fixed;
+  top: 10px;    /* distancia desde arriba */
+  right: 10rem;  /* distancia desde la derecha */
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.closeButton :hover{
+  transform: scale(1.2);
+  color: red;
+}
+
+.tituloInicio {
+  display: block;
+  text-align: center;
+  font-size: 36px;
+}
+
+.formProductiva {
+  width: 100%;
+}
+
+/* contenedor principal tipo grid */
+.containerProductiva {
+  width: 100%;
+  max-width: 1600px;
+  margin: 1.5rem auto;
+  margin-left: 2rem;
+  display: grid;
+  grid-template-columns: 500px 400px 340px; /* izquierda | centro | derecha */
+  gap: 1.5rem 4rem;
+  align-items: start;
+}
+
+/* columnas */
+.leftColumn { display: flex; flex-direction: column; gap: 1rem; }
+.centerColumn { display: flex; flex-direction: column; gap: 1rem; }
+.rightColumn { display: flex; flex-direction: column; gap: 1rem; align-items: center; }
+
+.buscadorInputs {
+  position: static; /* antes estaba absolute */
+  left: auto;
+  top: auto;
+  padding: 0;
+}
+
+/* Alinea los inputs */
+.searchInput {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  width: 40%;
+  padding: 0.4rem;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #39a900;
+}
+
+.subtitulo{
+    display: inline-block;
+    width: 170px;  /* mismo ancho para alinear los inputs */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.buscarBtn{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;  
+    background-color: #007832;
+    color: white;
+    border: none;
+    border-radius: 0.3rem;
+    padding: 8px 15px;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
+.buscarBtn:hover{
+    background-color: #39a900;
+}
+
+.resultados {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  max-width: 18rem;
+  position: static;
+  border: 1px solid #ccc;
+  text-align: center;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.resultadoItem p {
+  margin-bottom: 0.6rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.preguntaDiscapacidad {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  width: 100%;
+  gap: 1px; /* espacio entre el texto y las opciones */
+  margin-top: 50px;
+  color: #000;
+  position: static;
+  display: flex;
+}
+
+.labelPregunta {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.opciones {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* espacio entre las opciones SI y NO */
+}
+
+.radio {
+  width: 18px;
+  height: 18px;
+  accent-color: #006400; /* color verde institucional */
+  cursor: pointer;
+}
+
+.question{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  margin-top: 38px;  
+  color: #000;
+  position: static;
+}
+
+.documentosList { 
+  list-style: none; 
+  padding: 1rem;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  margin-left: 3rem;
+  max-width: 18rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+}
+
+/* Cada item puede tener header + submenu debajo */
+.documentoItem { 
+  padding: 8px;
+  border-bottom: 1px solid #e6e6e6;
+  margin-right: 2rem;
+}
+
+/* Fila (texto izquierda, icono derecha) */
+.documentoHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: static;
+}
+
+/* Iconos */
+.icono {
+  width: 22px; 
+  height: 22px; 
+  display: inline-block;
+  border-radius: 6px; 
+  cursor: pointer; 
+  flex-shrink: 0;
+}
+
+/* Check */
+.check { 
+  border: 2px solid #39a900; 
+  background: #fff; 
+  position: relative;
+  left: 3rem;
+}
+
+.check.activo { 
+  border-color: #4caf50; 
+  background: #007832; 
+}
+
+.check.activo::after {
+  content: "✔"; 
+  color: #fff; 
+  font-size: 14px; 
+  font-weight: 700;
+  margin-left: 0.3rem;
+  top: -2px; 
+  left: 3px;
+}
+
+.selectDocument {
+  list-style: none; 
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  margin-left: 5rem;
+  max-width: 14rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+}
+
+.containerDocument{
+  position: static;
+  display: flex;
+  align-items: center;
+  margin-left: 0.4rem;
+}
+
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  width: 40%;
+  border: 2px solid #39a900;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin-top: 3rem;
+  margin-left: 5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.docsPrimary {
+  position: static;
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.contenedorBoton {
+  display: flex;
+  justify-content: center;
+  min-height: 20px;
+  align-items: center;
+  margin-right: 150px;
+}
+
+.boton {
+  background-color: #007832;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.boton:hover {
+  background-color: #39a900;
+}
+
+.documentosContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 170px;
+}
+
+.sindocument {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 2rem;
+}
+
+.docItem {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column; /* ahora los hijos se apilan verticalmente */
+  align-items: flex-start; /* alineados a la izquierda */
+  gap: 8px; /* espacio entre preview y botón */
+}
+
+.previewBox {
+  position: relative;
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px;
+   overflow: hidden;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+.previewBtn {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: -10px;
+  border-radius: 50%;
+  padding: 4px 6px;
+  transition: transform 0.2s;
+}
+
+.previewBox:hover .previewBtn {
+  display: block; /* Se muestra solo al hover */
+}
+
+.docPreview {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.docPreviewPdf {
+  width: 200px;
+  height: 260px;
+  border: none;
+  object-fit: contain;
+  overflow: hidden; /* importante */
+}
+
+.docTexto {
+  cursor: pointer;
+  font-weight: 500;
+  color: #333;
+}
+
+.docActions {
+  position: absolute;
+  top: 14px; /* un poco abajo del borde superior */
+  left: 12px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.deleteBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 50%;
+  padding: 4px 6px;
+  transition: transform 0.2s;
+  margin-top: -0.5rem;
+  margin-left: -0.5rem;
+}
+
+.previewBtn:hover {
+  transform: scale(1.2);
+  color: #1d72b8;
+}
+
+.deleteBtn:hover {
+  transform: scale(1.2);
+  color: red;
+}
+
+.downloadBtn {
+  background: #00304D;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  border: none;
+  font-size: 12px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.downloadBtn:hover {
+  background: #001B36;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modalContent { 
+  max-width: 90%; 
+  max-height: 90%; 
+  overflow: auto; 
+  background: #fff; 
+  padding: 20px; 
+  border-radius: 12px; 
+  position: relative; 
+}
+
+.modalPdf { 
+  width: 85vw; 
+  height: 85vh; 
+  border: 0; 
+}
+
+.closeBtn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 30px;   /* ancho fijo */
+  height: 30px;  /* alto fijo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  color: #000000;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.closeBtn:hover {
+  color: red;
+  transform: scale(1.1);
+}
+
+.contenedorButton {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-top: 13rem;
+}
+
+.button {
+  background-color: #007832;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.button:hover {
+  background-color: #39a900;
+}
+
+.alerta {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%, 0) scale(0.9);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  font-size: 16px;
+  color: #ffffff;
+  padding: 15px 10px;
+  border-radius: 6px;
+}
+
+.alerta.visible {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+}
+
+.success {
+  background-color: #00304D;
+}
+
+.error {
+  background-color: #F44336;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
