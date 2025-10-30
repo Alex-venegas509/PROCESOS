@@ -1,34 +1,40 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, UploadFile, File, Form
 from sqlalchemy.orm import Session
-from database.db import SessionLocal
-from app.schemas.novedades_shemas import NovedadCreate, NovedadResponse, NovedadUpdate
-from app.services import novedades_service as service
+from database.db import get_db
+from schemas.novedades_schema import NovedadResponse, NovedadCreate
+from services.novedades_service import create_novedad, get_novedades_by_cedula
+import os
+import shutil
 
 router = APIRouter(prefix="/novedades", tags=["Novedades"])
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+UPLOAD_DIR = "uploads"
+os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 @router.post("/", response_model=NovedadResponse)
-def crear(data: NovedadCreate, db: Session = Depends(get_db)):
-    return service.crear_novedades(db, data)
+async def subir_novedad(
+    cedula: str = Form(...),
+    ficha: str = Form(...),
+    tipo_documento: str = Form(...),
+    file: UploadFile = File(...),
+    db: Session = Depends(get_db)
+):
+    # Guardar archivo
+    file_path = os.path.join(UPLOAD_DIR, file.filename)
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
 
-@router.get("/", response_model=list[NovedadResponse])
-def listar(db: Session = Depends(get_db)):
-    return service.listar_novedades(db)
+    # Crear registro en la base de datos
+    novedad_data = NovedadCreate(
+        cedula=cedula,
+        ficha=ficha,
+        tipo_documento=tipo_documento,
+        nombre_archivo=file.filename,
+        ruta_archivo=file_path
+    )
 
-@router.get("/{id}", response_model=NovedadResponse)
-def obtener(id: int, db: Session = Depends(get_db)):
-    return service.obtener_novedades(db, id)
+    return create_novedad(db, novedad_data)
 
-@router.put("/{id}", response_model=NovedadResponse)
-def actualizar(id: int, data: NovedadUpdate, db: Session = Depends(get_db)):
-    return service.actualizar_novedades(db, id, data)
-
-@router.delete("/{id}")
-def eliminar(id: int, db: Session = Depends(get_db)):
-    return service.eliminar_novedades(db, id)
+@router.get("/{cedula}", response_model=list[NovedadResponse])
+def obtener_novedades(cedula: str, db: Session = Depends(get_db)):
+    return get_novedades_by_cedula(db, cedula)
